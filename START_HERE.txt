@@ -1,0 +1,88 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║         ZAVA INSURANCE – ON-DEVICE AI DEMO – START HERE                    ║
+║         Powered by Microsoft Surface Copilot+ PC & Foundry Local            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+WELCOME! This demo showcases on-device AI for Zava Insurance use cases,
+running entirely on the NPU. No cloud. No API costs. Works in airplane mode.
+
+
+════════════════════════════════════════════════════════════════════════════════
+FIRST TIME SETUP
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: Setup.bat  (or run Setup.ps1 in PowerShell)
+  2. Wait for dependencies to install (~1-2 minutes)
+  3. Double-click: StartApp.bat
+  4. App opens in your browser at http://localhost:5000
+
+
+════════════════════════════════════════════════════════════════════════════════
+RETURNING USER
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: StartApp.bat
+  2. App opens in your browser
+  3. Done!
+
+
+════════════════════════════════════════════════════════════════════════════════
+DEMO FEATURES (4 Tabs)
+════════════════════════════════════════════════════════════════════════════════
+
+  TAB 1 – HOME
+  • Overview of on-device AI capabilities for Zava
+  • Value propositions: $0 inference, data sovereignty, offline
+
+  TAB 2 – CLAIMS AI
+  • Upload/describe property or vehicle damage
+  • Get instant AI damage assessment, severity, repair estimates
+  • Sample scenarios included for easy demo
+  • Upload images from the sample_claims folder
+
+  TAB 3 – POLICY ASSISTANT
+  • Chat with AI about insurance policies, coverage, claims
+  • Pre-built quick prompts for common questions
+  • All conversation processed on-device
+
+  TAB 4 – DOCUMENT ANALYZER
+  • Paste policy docs, claim reports, or correspondence
+  • AI summarizes, extracts data, or flags compliance issues
+  • Sample Zava policy included
+
+  TAB 5 – NPU DASHBOARD
+  • Live inference metrics and fleet-scale cost projections
+  • System status and inference log
+  • Airplane mode test prompt
+
+
+════════════════════════════════════════════════════════════════════════════════
+THE DEMO MOMENT
+════════════════════════════════════════════════════════════════════════════════
+
+  The moment that changes the conversation every time:
+  
+  1. Run several inferences across the tabs
+  2. Turn on AIRPLANE MODE
+  3. Run more inferences — they keep working
+  4. Show the NPU Dashboard — $0.00 in cloud costs
+  5. Project fleet savings: 10,000 adjusters × 50 daily = $1.3M/year saved
+
+
+════════════════════════════════════════════════════════════════════════════════
+REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+  • Windows 11 Copilot+ PC (Surface recommended)
+  • Python 3.10+
+  • Foundry Local (installed automatically by Setup.bat)
+  • No internet required after first setup!
+
+
+════════════════════════════════════════════════════════════════════════════════
+REFERENCE
+════════════════════════════════════════════════════════════════════════════════
+
+  Blog: https://techcommunity.microsoft.com/blog/surfaceitpro/vibe-coding-for-the-npu/4497674
+  GitHub: https://github.com/frankcx1/surface-npu-demo
+  Foundry Local: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/

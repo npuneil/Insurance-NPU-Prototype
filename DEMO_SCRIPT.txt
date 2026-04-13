@@ -1,0 +1,134 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║              ZAVA INSURANCE – 60-SECOND EXECUTIVE DEMO SCRIPT              ║
+║           On-Device AI powered by Microsoft Copilot+ PC with NPU           ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+PRE-DEMO CHECKLIST  (5 mins before)
+════════════════════════════════════
+  □  App is running (StartApp.bat) and browser shows the Home tab
+  □  Green "NPU Online" dot visible in top-right corner
+  □  Wi-Fi is ON (you'll turn it off mid-demo for the wow moment)
+  □  Run one quick test inference in Claims AI to confirm model is hot
+  □  Have Task Manager open (optional) to show NPU utilization
+
+
+BEFORE YOU START – THE KEY MESSAGE
+════════════════════════════════════
+  "What if every field adjuster had an AI expert in their pocket —
+   with zero cloud cost, full data privacy, and it works even without
+   internet?"
+
+
+══════════════════════════════════════════════════════════════════════════════
+THE DEMO  (60 seconds)
+══════════════════════════════════════════════════════════════════════════════
+
+[0:00–0:10]  THE HOOK  ────────────────────────────────────────────────────
+
+  START ON: Home tab
+
+  SAY: "This is running entirely on the device — the Copilot+ PC has a
+  dedicated AI chip, an NPU, that processes AI locally. No cloud. No
+  API calls. No per-token cost."
+
+  POINT TO: Green "NPU Online" indicator in the header
+
+
+[0:10–0:30]  THE LIVE DEMO  ──────────────────────────────────────────────
+
+  CLICK: Claims AI tab → scroll to Sample Damage Photos
+  CLICK: "🌊 Flood Damage" photo (auto-assesses with one click)
+
+  WHILE LOADING SAY: "A field adjuster photographs flood damage. The AI
+  assesses severity, estimates repair cost, and recommends next steps —
+  all in seconds, right on the device."
+
+  WHEN RESULT APPEARS, POINT TO the result and the metrics bar:
+  SAY: "That was [X] milliseconds, [X] tokens — and look:
+  zero cloud cost. This data never left the device."
+
+
+[0:30–0:45]  THE WOW MOMENT  ─────────────────────────────────────────────
+
+  ACTION:  TURN ON AIRPLANE MODE  (or disconnect Wi-Fi)
+  CLICK: "🔥 Fire Damage" photo (auto-assesses)
+
+  SAY: "Now I'm completely offline — airplane mode, no internet.
+  Watch."
+
+  WHEN RESULT APPEARS:
+  SAY: "Same speed, same quality. The AI runs on the NPU chip,
+  not in the cloud. This works in basements, rural areas,
+  disaster zones — anywhere your adjusters go."
+
+
+[0:45–0:60]  THE BUSINESS CASE  ──────────────────────────────────────────
+
+  CLICK: NPU Dashboard tab
+  POINT TO: Fleet-Scale Projection (pre-filled: 10,000 adjusters)
+
+  SAY: "Now scale this. Ten thousand adjusters, fifty AI-assisted
+  assessments a day — that's 130 million inferences a year.
+  At cloud rates, that's $1.3 million annually. With the NPU,
+  that cost is zero. Plus full data sovereignty — no customer
+  PII in the cloud — and it works offline."
+
+  CLOSE WITH: "This is what the NPU unlocks for Zava at scale."
+
+
+══════════════════════════════════════════════════════════════════════════════
+EXECUTIVE Q&A – ANTICIPATED QUESTIONS & ANSWERS
+══════════════════════════════════════════════════════════════════════════════
+
+  Q: "How accurate is this compared to cloud AI?"
+  A: "The on-device model handles routine triage — severity, cost
+     estimates, next steps. Think of it as first-pass AI for the 80%
+     of standard claims. Complex or ambiguous cases still escalate to
+     a senior adjuster or cloud model. The value is instant triage at
+     zero cost."
+
+  Q: "What about model updates?"
+  A: "Models are deployed through standard device management. When a
+     new model ships, it's pushed to the fleet like any software
+     update. No re-training infrastructure needed."
+
+  Q: "Does this replace cloud AI?"
+  A: "No — it complements it. Routine, high-volume tasks run on the
+     NPU at zero marginal cost. Complex tasks or batch processing
+     still go to the cloud. You're offloading the most repetitive
+     work from your most expensive infrastructure."
+
+  Q: "What hardware is this running on?"
+  A: "This is a Microsoft Surface Copilot+ PC with a Qualcomm
+     Snapdragon NPU. It's already in our commercial lineup — this
+     is shipping hardware, not a prototype chip."
+
+  Q: "What about data privacy / compliance?"
+  A: "All inference is local. Customer PII, claim photos, policy
+     documents — nothing leaves the device. No cross-border data
+     transfer, no cloud storage of sensitive data. This simplifies
+     compliance significantly."
+
+  Q: "What's the per-device cost?"
+  A: "The NPU is built into every Copilot+ PC — there's no separate
+     license or hardware add-on. If Zava is already purchasing
+     Surface devices, the AI capability is included."
+
+  Q: "What about the carbon / sustainability angle?"
+  A: "The NPU draws about 3 watts versus 300+ watts for a cloud GPU.
+     At fleet scale, the dashboard shows the CO₂ reduction — it's
+     the equivalent of thousands of fewer miles driven per year."
+
+
+══════════════════════════════════════════════════════════════════════════════
+DEMO TIPS
+══════════════════════════════════════════════════════════════════════════════
+
+  • KEEP IT VISUAL — click, don't explain. Let the AI response speak.
+  • THE AIRPLANE MODE MOMENT is your closer — practice the timing.
+  • DON'T apologize for speed — seconds is fast for on-device AI.
+  • If asked for more, show Policy Assistant (quick prompts are one-click)
+    or Document Analyzer (Load Sample Policy → Analyze).
+  • The dashboard fleet projection calculator is interactive — let
+    executives change the numbers for their own scenarios.
