@@ -1,108 +1,99 @@
-GITHUB-PUBLIC README
-===================
+# Insurance — On-Device AI Showcase 🛡️
 
-On-Device AI Prototypes & Sample Code
+A showcase application demonstrating on-device AI capabilities for insurance claims processing, running entirely on the NPU (Neural Processing Unit) via Microsoft Foundry Local. Optimized for Snapdragon X (QNN runtime). Works in airplane mode.
 
-Overview
---------
+## On-Device AI Prototypes & Sample Code
+
+### Overview
+
 This repository contains prototypes, demos, and sample code that illustrate patterns for building on-device AI solutions. The content is provided for educational and demonstration purposes only to help developers explore ideas and implementation approaches.
 
 This repository does not contain Microsoft products and is not a supported or production-ready offering.
 
-Prototype & Sample Code Disclosure
----------------------------------
+### Prototype & Sample Code Disclosure
+
 - All code and demos are experimental prototypes or samples.
 - They may be incomplete, change without notice, or be removed at any time.
 - The contents are provided "as-is," without warranties or guarantees of any kind.
 
-No Product, Performance, or Business Claims
--------------------------------------------
+### No Product, Performance, or Business Claims
+
 - This repository makes no claims about performance, accuracy, productivity, efficiency, cost savings, reliability, or security.
 - Any example outputs, screenshots, or logs are illustrative only and should not be interpreted as typical or expected results.
 
-AI Output Variability
---------------------
+### AI Output Variability
+
 - AI and machine-learning outputs may be non-deterministic, incomplete, or incorrect.
 - Example outputs shown here are not guaranteed and may vary across runs, devices, or environments.
 
-Responsible AI Considerations
------------------------------
+### Responsible AI Considerations
+
 - These samples are intended to demonstrate technical patterns, not validated AI systems.
 - Developers are responsible for evaluating fairness, reliability, privacy, accessibility, and safety before using similar approaches in real applications.
 - Do not deploy AI solutions based on this code without appropriate testing, human oversight, and safeguards.
 
-Data & Fictitious Content
-------------------------
+### Data & Fictitious Content
+
 - Any names, data, or scenarios used in examples are fictitious and for illustration only.
 - Do not use real personal, customer, or confidential data without proper authorization and protections.
 
-Third-Party Components
-----------------------
+### Third-Party Components
+
 - The repository may reference third-party libraries or tools.
 - Use of those components is subject to their respective licenses and terms.
 
-No Support
-----------
+### No Support
+
 Microsoft does not provide support, SLAs, or warranties for the contents of this repository.
 
-Summary
--------
+### Summary
+
 By using this repository, you acknowledge that it contains illustrative prototypes and sample code only, not supported or production-ready software.
 
+---
 
+## Quick Start
 
-CUSTOMER-SHARED README
-=====================
+```powershell
+# First time:
+Setup.bat          # or: .\Setup.ps1
 
-On-Device AI Prototypes & Sample Code
+# Every time:
+StartApp.bat       # opens browser to http://localhost:5000
+```
 
-Overview
---------
-This repository contains prototypes, demos, and sample code created to illustrate approaches for building on-device AI solutions. The materials are intended to support technical discussions, workshops, and exploration by customers building their own solutions.
+## Prerequisites
 
-These materials are not Microsoft products and are not production-ready or supported offerings.
+- **Windows 11 Copilot+ PC** with Snapdragon X NPU
+- **Python 3.10+** (ARM64-native recommended for Snapdragon)
+- **Foundry Local** installed (`winget install Microsoft.FoundryLocal`)
 
-Prototype / Preview Disclosure
-------------------------------
-- The code and demos in this repository are prototypes and reference samples.
-- They are provided for evaluation and illustration purposes only.
-- Functionality, behavior, and availability may change and should not be relied upon as a product commitment.
+## Snapdragon X Optimization
 
-No Product Commitment
----------------------
-Nothing in this repository should be interpreted as:
-- A promise of future product features or availability
-- A roadmap, SLA, or support commitment
-- A representation of final product behavior or performance
+This app is optimized for ARM64 Snapdragon X devices:
+- **WMI-based silicon detection** — correctly identifies Snapdragon under x64 emulation
+- **No warmup on Snapdragon** — QNN runtime loads on first real request
+- **NPU-first model chain**: qwen2.5-1.5b → phi-3-mini-4k → phi-3.5-mini → qwen2.5-7b
+- **CPU fallback** when no NPU model is available
 
-Demonstrations & AI Behavior
-----------------------------
-- Demos show example behaviors and possible patterns, not guaranteed outcomes.
-- AI outputs may be variable, non-deterministic, or incorrect.
-- Example results should not be used for benchmarking or business decisions.
+## Features
 
-Responsible AI Considerations
------------------------------
-- These examples do not represent a complete or validated Responsible AI implementation.
-- Customers are responsible for evaluating fairness, bias, reliability, and safety.
-- Appropriate human oversight, controls, and safeguards must be implemented before any real-world or production use.
+| Tab | Description |
+|-----|-------------|
+| **Home** | Overview of on-device AI for insurance operations |
+| **Claims AI** | Upload or describe property/vehicle damage → AI severity assessment, repair cost estimate, next steps |
+| **Policy Assistant** | Chat about insurance policies, coverage, claims, and terminology |
+| **Document Analyzer** | Paste policy docs or claim reports → summarize, extract data, or review for risks |
+| **NPU Dashboard** | Live metrics, fleet-scale cost projections, carbon calculator, inference log |
 
-Data, Privacy & Fictitious Content
----------------------------------
-- All example names, data, and scenarios are fictitious unless explicitly stated otherwise.
-- Replace all example data with properly sourced and authorized data before real use.
-- Do not use personal or confidential data without appropriate protections and permissions.
+## Sample Data
 
-Third-Party Dependencies
-------------------------
-- Some samples may reference third-party libraries or tools.
-- Use of third-party components is governed by their respective licenses and terms.
+- 6 sample damage scenarios (flood, fire, hurricane, burst pipe, collapse, interior flood)
+- Sample insurance policy document
+- Voice dictation support for field adjusters
 
-Support & Warranty Disclaimer
------------------------------
-- Microsoft provides no support, warranty, or SLA for the contents of this repository.
-- Customers are responsible for testing, validation, and integration.
+## Demo Experience
 
-Summary
--------
-These materials are provided to accelerate learning and discussion, not as finished solutions. Use them as inspiration and reference—not as drop-in production code.
+See `START_HERE.txt` for setup instructions and `DEMO_SCRIPT.txt` for a guided demo walkthrough.
+
+**The key demo moment:** Run claims assessments → turn on airplane mode → run more assessments. They keep working. Show the NPU Dashboard — $0.00 in cloud costs. Project fleet savings: 10K adjusters × 50 inferences/day = 130M inferences/year, all on-device.
