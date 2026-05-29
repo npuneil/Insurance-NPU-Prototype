@@ -1,0 +1,78 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      ZAVA INSURANCE – ON-DEVICE AI DEMO – START HERE  (INTEL EDITION)      ║
+║   Powered by Microsoft Copilot+ PC (Intel Core Ultra) & Foundry Local      ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+WELCOME! This package is the INTEL edition, tuned for Intel Core Ultra NPUs
+using the OpenVINO execution provider. Runs entirely on-device. No cloud.
+No API costs. Works in airplane mode.
+
+If you are on a Snapdragon X device, download
+`ZavaInsuranceAI-Snapdragon-vX.Y.Z.zip` instead — it ships a QNN-tuned chain.
+
+
+════════════════════════════════════════════════════════════════════════════════
+FIRST TIME SETUP
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: Setup.bat  (or run Setup.ps1 in PowerShell)
+     • Installs Foundry Local if missing
+     • Creates a Python virtual environment
+     • Installs Flask, OpenAI SDK, and foundry-local-sdk
+  2. Double-click: StartApp.bat
+     • Sets ZAVA_PLATFORM=intel
+     • Launches Flask on http://localhost:5000
+     • Opens your browser automatically
+
+
+════════════════════════════════════════════════════════════════════════════════
+RETURNING USER
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: StartApp.bat
+  2. App opens in your browser
+  3. Done!
+
+
+════════════════════════════════════════════════════════════════════════════════
+INTEL-SPECIFIC NOTES
+════════════════════════════════════════════════════════════════════════════════
+
+  • Default model chain prefers OpenVINO INT4 NPU builds:
+        phi-3.5-mini → phi-4-mini → qwen2.5-1.5b → phi-3-mini-4k
+  • Foundry Local automatically picks the right OpenVINO variant for your NPU.
+  • The first model load may take 60–120 seconds while OpenVINO compiles the
+    model graph for the NPU. Subsequent loads are cached and much faster.
+  • Check the NPU Dashboard — `hardware` should read "NPU (OpenVINO)".
+
+
+════════════════════════════════════════════════════════════════════════════════
+DEMO FEATURES (5 Tabs)
+════════════════════════════════════════════════════════════════════════════════
+
+  HOME             – Overview, value props ($0 inference, privacy, offline)
+  CLAIMS AI        – Damage description → AI severity & repair estimate
+  POLICY ASSISTANT – Chat about insurance policies, coverage, claims
+  DOCUMENT ANALYZER– Summarize/extract/review policy & claim documents
+  NPU DASHBOARD    – Live inference metrics + fleet-scale cost projection
+
+
+════════════════════════════════════════════════════════════════════════════════
+THE DEMO MOMENT
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Run several inferences across the tabs
+  2. Turn on AIRPLANE MODE
+  3. Run more inferences — they keep working
+  4. Show the NPU Dashboard — $0.00 in cloud costs
+  5. Project fleet savings: 10,000 adjusters × 50 daily = $1.3M/year saved
+
+
+════════════════════════════════════════════════════════════════════════════════
+REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+  • Windows 11 Copilot+ PC with an Intel Core Ultra NPU
+  • Python 3.10+ (x64)
+  • Foundry Local (installed automatically by Setup.bat)
+  • No internet required after first setup!

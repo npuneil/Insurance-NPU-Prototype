@@ -76,6 +76,36 @@ This app is optimized for ARM64 Snapdragon X devices:
 - **NPU-first model chain**: qwen2.5-1.5b → phi-3-mini-4k → phi-3.5-mini → qwen2.5-7b
 - **CPU fallback** when no NPU model is available
 
+## Downloadable Packages (Intel & Snapdragon)
+
+Two pre-built, end-user-friendly zip packages are produced by
+[`build-packages.ps1`](./build-packages.ps1):
+
+| Package | Target hardware | NPU runtime | Default model chain |
+|---------|-----------------|-------------|---------------------|
+| `ZavaInsuranceAI-Intel-v<x.y.z>.zip`      | Intel Core Ultra (Lunar Lake / Meteor Lake) | OpenVINO | `phi-3.5-mini → phi-4-mini → qwen2.5-1.5b → phi-3-mini-4k` |
+| `ZavaInsuranceAI-Snapdragon-v<x.y.z>.zip` | Snapdragon X                                | QNN      | `qwen2.5-1.5b → phi-3-mini-4k → phi-3.5-mini → phi-4-mini` |
+
+Each zip is self-contained: end users run `Setup.bat` once, then `StartApp.bat`
+thereafter. `StartApp.bat` sets `ZAVA_PLATFORM=intel` or `snapdragon`, and a
+`platform.txt` marker is also baked into the package as a fallback. The Flask
+app reads either signal to pick the right model chain and to label the NPU
+runtime correctly on the dashboard (`NPU (OpenVINO)` vs `NPU (QNN)`).
+
+Platform-specific overlays live in `packaging/intel/` and
+`packaging/snapdragon/` (README, START_HERE, Setup.bat, StartApp.bat). Shared
+source comes from the repo root (`app.py`, `templates/`, `static/`,
+`requirements.txt`, `Setup.ps1`, `DEMO_SCRIPT.txt`).
+
+### Build both packages
+
+```powershell
+# From the repo root
+.\build-packages.ps1                       # → dist\ZavaInsuranceAI-{Intel,Snapdragon}-v1.0.0.zip
+.\build-packages.ps1 -Version 1.1.0        # bump version
+.\build-packages.ps1 -Version 1.1.0 -Clean # wipe dist\ first
+```
+
 ## Features
 
 | Tab | Description |

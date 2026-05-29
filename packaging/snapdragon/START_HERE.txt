@@ -1,0 +1,78 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║    ZAVA INSURANCE – ON-DEVICE AI DEMO – START HERE  (SNAPDRAGON EDITION)   ║
+║      Powered by Microsoft Copilot+ PC (Snapdragon X) & Foundry Local       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+WELCOME! This package is the SNAPDRAGON edition, tuned for Snapdragon X NPUs
+using the QNN execution provider. Runs entirely on-device. No cloud. No API
+costs. Works in airplane mode.
+
+If you are on an Intel Core Ultra device, download
+`ZavaInsuranceAI-Intel-vX.Y.Z.zip` instead — it ships an OpenVINO-tuned chain.
+
+
+════════════════════════════════════════════════════════════════════════════════
+FIRST TIME SETUP
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: Setup.bat  (or run Setup.ps1 in PowerShell)
+     • Installs Foundry Local if missing
+     • Creates a Python virtual environment
+     • Installs Flask, OpenAI SDK, and foundry-local-sdk
+  2. Double-click: StartApp.bat
+     • Sets ZAVA_PLATFORM=snapdragon
+     • Launches Flask on http://localhost:5000
+     • Opens your browser automatically
+
+
+════════════════════════════════════════════════════════════════════════════════
+RETURNING USER
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Double-click: StartApp.bat
+  2. App opens in your browser
+  3. Done!
+
+
+════════════════════════════════════════════════════════════════════════════════
+SNAPDRAGON-SPECIFIC NOTES
+════════════════════════════════════════════════════════════════════════════════
+
+  • Default model chain prefers QNN INT4 NPU builds:
+        qwen2.5-1.5b → phi-3-mini-4k → phi-3.5-mini → phi-4-mini
+  • ARM64-native Python is strongly recommended (x64 Python runs under
+    emulation and silicon detection can mis-report).
+  • Foundry Local automatically picks the right QNN variant for your NPU.
+  • Check the NPU Dashboard — `hardware` should read "NPU (QNN)".
+
+
+════════════════════════════════════════════════════════════════════════════════
+DEMO FEATURES (5 Tabs)
+════════════════════════════════════════════════════════════════════════════════
+
+  HOME             – Overview, value props ($0 inference, privacy, offline)
+  CLAIMS AI        – Damage description → AI severity & repair estimate
+  POLICY ASSISTANT – Chat about insurance policies, coverage, claims
+  DOCUMENT ANALYZER– Summarize/extract/review policy & claim documents
+  NPU DASHBOARD    – Live inference metrics + fleet-scale cost projection
+
+
+════════════════════════════════════════════════════════════════════════════════
+THE DEMO MOMENT
+════════════════════════════════════════════════════════════════════════════════
+
+  1. Run several inferences across the tabs
+  2. Turn on AIRPLANE MODE
+  3. Run more inferences — they keep working
+  4. Show the NPU Dashboard — $0.00 in cloud costs
+  5. Project fleet savings: 10,000 adjusters × 50 daily = $1.3M/year saved
+
+
+════════════════════════════════════════════════════════════════════════════════
+REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+  • Windows 11 Copilot+ PC with Snapdragon X NPU
+  • Python 3.10+ (ARM64-native recommended)
+  • Foundry Local (installed automatically by Setup.bat)
+  • No internet required after first setup!

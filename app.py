@@ -34,19 +34,37 @@ client = None
 model_id = None
 manager = None
 
+PLATFORM = os.environ.get("ZAVA_PLATFORM", "").strip().lower()
+if not PLATFORM:
+    _marker = Path(__file__).resolve().parent / "platform.txt"
+    if _marker.is_file():
+        try:
+            PLATFORM = _marker.read_text(encoding="ascii").strip().lower()
+        except Exception:
+            PLATFORM = ""
+if not PLATFORM:
+    PLATFORM = "auto"
+
+# Platform-tuned default model chains. Foundry Local will pick the best
+# execution-provider variant (OpenVINO for Intel NPU, QNN for Snapdragon NPU,
+# CPU otherwise) when it resolves these aliases on each device.
+_DEFAULT_CHAINS = {
+    # Intel Core Ultra (Lunar Lake / Meteor Lake) – OpenVINO NPU EP
+    "intel":      "phi-3.5-mini,phi-4-mini,qwen2.5-1.5b,phi-3-mini-4k",
+    # Snapdragon X – QNN NPU EP
+    "snapdragon": "qwen2.5-1.5b,phi-3-mini-4k,phi-3.5-mini,phi-4-mini",
+    # Unknown / generic – Snapdragon-style order (current behaviour)
+    "auto":       "qwen2.5-1.5b,phi-3-mini-4k,phi-3.5-mini,phi-4-mini",
+}
+
+
 def init_foundry():
     """Initialise Foundry Local connection – tries NPU models first, then CPU fallback."""
     global foundry_ok, client, model_id, manager
 
-    # NPU-first model priority chain (smallest/fastest first):
-    #   1. qwen2.5-1.5b  → smallest NPU model (1.5B), fastest inference
-    #   2. phi-3-mini-4k → small NPU model (3.8B), 4K context
-    #   3. phi-3.5-mini  → NPU model (3.8B)
-    #   4. phi-4-mini    → CPU-only fallback (larger, slower)
-    NPU_MODELS = os.environ.get(
-        "FOUNDRY_MODELS",
-        "qwen2.5-1.5b,phi-3-mini-4k,phi-3.5-mini,phi-4-mini"
-    ).split(",")
+    default_chain = _DEFAULT_CHAINS.get(PLATFORM, _DEFAULT_CHAINS["auto"])
+    NPU_MODELS = os.environ.get("FOUNDRY_MODELS", default_chain).split(",")
+    print(f"[STARTUP] Platform: {PLATFORM} | Model chain: {','.join(m.strip() for m in NPU_MODELS)}")
 
     try:
         from foundry_local_sdk import FoundryLocalManager
@@ -197,6 +215,26 @@ def index():
     return render_template("index.html")
 
 
+def _hardware_label() -> str:
+    """Detect the NPU execution provider from the resolved model id."""
+    if not (foundry_ok and model_id):
+        return "none"
+    mid = model_id.lower()
+    is_npu = "npu" in mid
+    if not is_npu:
+        return "CPU"
+    if "openvino" in mid or "ovm" in mid:
+        return "NPU (OpenVINO)"
+    if "qnn" in mid:
+        return "NPU (QNN)"
+    # Fall back to the package-declared platform when the model id isn't explicit
+    if PLATFORM == "intel":
+        return "NPU (OpenVINO)"
+    if PLATFORM == "snapdragon":
+        return "NPU (QNN)"
+    return "NPU"
+
+
 @app.route("/api/status")
 def api_status():
     """Return NPU / Foundry Local availability."""
@@ -206,7 +244,8 @@ def api_status():
         "model": model_id or "N/A",
         "endpoint": str(manager.endpoint) if manager else "N/A",
         "mode": "on-device NPU" if is_npu else ("on-device CPU" if foundry_ok else "UI preview (no AI)"),
-        "hardware": "NPU (QNN)" if is_npu else ("CPU" if foundry_ok else "none"),
+        "hardware": _hardware_label(),
+        "platform": PLATFORM,
     })
 
 
@@ -331,4 +370,4 @@ if __name__ == "__main__":
     print("=" * 60)
     print(f"  Model loading may take a moment on first run...")
     print(f"  Once ready, open \u2192 http://localhost:5000\n")
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="127.0.0.1", port=5003, debug=False)
