@@ -21,6 +21,14 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
+# Windows consoles default to cp1252 and choke on Unicode like → / ✓ / ✗.
+# Force stdout/stderr to UTF-8 so startup/inference logging never crashes.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from flask import (
     Flask, render_template, request, jsonify, send_from_directory
 )
@@ -95,17 +103,18 @@ def init_foundry():
 
 init_foundry()
 
-# ---------------------------------------------------------------------------
-# Silent warmup – prime the model so the first demo inference is fast
-# ---------------------------------------------------------------------------
-if foundry_ok:
+# Warmup is defined here but only INVOKED from __main__ (after _run_inference
+# exists). This avoids the "name '_run_inference' is not defined" error and
+# also prevents WSGI workers from each warming up on import.
+def _warmup_model():
+    if not foundry_ok:
+        return
     try:
         print("[STARTUP] Warming up model (silent inference)...")
-        _warmup = _run_inference("Reply OK.", "warmup", max_tokens=8)
-        # Remove warmup from the inference log so dashboard starts clean
+        _run_inference("Reply OK.", "warmup", max_tokens=8)
         if inference_log:
             inference_log.clear()
-        print("[STARTUP] Warmup complete – model is hot and ready.")
+        print("[STARTUP] Warmup complete - model is hot and ready.")
     except Exception as exc:
         print(f"[STARTUP] Warmup skipped: {exc}")
 
@@ -365,9 +374,10 @@ def upload_image():
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("  Zava Insurance – On-Device AI Demo")
+    print("  Zava Insurance - On-Device AI Demo")
     print("  Powered by Microsoft Surface + Foundry Local")
     print("=" * 60)
-    print(f"  Model loading may take a moment on first run...")
-    print(f"  Once ready, open \u2192 http://localhost:5000\n")
-    app.run(host="127.0.0.1", port=5003, debug=False)
+    print("  Model loading may take a moment on first run...")
+    print("  Once ready, open -> http://localhost:5000\n")
+    _warmup_model()
+    app.run(host="127.0.0.1", port=5000, debug=False)
